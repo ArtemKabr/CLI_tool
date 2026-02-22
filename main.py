@@ -37,7 +37,15 @@ def main() -> None:
     report = report_cls(rows)
     result = report.build()
 
-    print(tabulate(result, headers=["country", report.header], showindex=True))
+    formatted = [(country, f"{value:.2f}") for country, value in result]
+    print(
+        tabulate(
+            formatted,
+            headers=["country", report.header],
+            showindex=True,
+            disable_numparse=True,
+        )
+    )
 
 
 if __name__ == "__main__":
